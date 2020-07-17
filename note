@@ -1,0 +1,89 @@
+Redux Topic
+
+
+---- install-------
+
+# npm install --save redux
+
+
+
+---------redux Api---------
+
+createStore()  狀態管理存儲對象
+
+
+
+----------store 對象---------
+
+1. redux庫最核心的管理對象
+
+2. 内部維護者
+state
+reducer  根據舊的狀態產生新的狀態的函數
+
+3. 核心方法
+
+getState()
+dispatch(action)
+subScribe(listener)
+
+4. 編碼
+
+store.getState()
+store.dispatch({type:'INCREMENT',number})
+store.subscribe(render)
+
+
+----------applyMiddleware()------------
+
+1. 作用
+應用於redux的中間件 插件庫
+
+2 編碼
+
+-----------redux的三個核心概念-------------
+
+-----action-------------
+
+標識要執行行爲的對象
+
+包含2個方面的屬性
+
+type 標識屬性 為字符串  唯一 必要屬性
+xxx 數據屬性  值為任意類型 可選屬性
+
+列子
+
+const action = {
+type :'INCREMENT'
+data : 2
+}
+
+Action Creator (創建 Action 的工廠)
+
+const increment = (number) =>  ({type:'INCREMENT', data:number})
+
+
+
+----------Reducer--------------
+
+根據老的state & action  產生新的state純函數
+
+樣列
+export default function counter (state= 0, action) {
+
+   switch(action, type){
+      case'INCREMENT':
+          return state + action.number
+      case 'DECREMENT':
+          return state -action.number
+      default:
+          return state
+
+
+ }
+
+}
+
+notice :  返回一個新的狀態
+          不要修改原來的狀態
