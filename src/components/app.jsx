@@ -1,41 +1,46 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux' // ----------->  connect react component  with redux  pass propTypes
+import {increment, decrement} from '../redux/actions'
+class App extends React.Component {
 
-import {INCREMENT, DECREMENT} from '../redux/action-types'
-
-import * as actions from'../redux/actions'
-export default class App extends React.Component {
+    static propTypes = {
+        count: PropTypes.number.isRequired,
+        increment: PropTypes.func.isRequired,
+        decrement: PropTypes.func.isRequired
+    }
 
     increment = () => {
         const number = this.select.value * 1
-        this.props.store.dispatch(actions.incrementCreator(number))
+        this.props.increment(number)
     }
 
     decrement = () => {
         const number = this.select.value * 1
         // 調用store方法更新狀態
-        this.props.store.dispatch(actions.decrementCreator(number))
+        this.props.decrement(number)
 
     }
 
     incrementOdd = () => {
         const number = this.select.value * 1
-        const count = this.props.store.getState()
+        const count = this.props.count
 
         if (count % 2 === 1)
-            this.props.store.dispatch(actions.incrementCreator(number))
+            this.props.increment(number)
     }
     incrementIffAsync = () => {
         const number = this.select.value * 1
         setTimeout(() => {
-            this.props.store.dispatch(actions.incrementCreator(number))
+            this.props.increment(number)
         }, 1000)
     }
 
 
     render() {
 
-        const count = this.props.store.getState()
+        const {count} = this.props
+
         return (
             <div>
                 <p>count {count} times</p>
@@ -57,3 +62,10 @@ export default class App extends React.Component {
         )
     }
 }
+
+// pass props
+export default connect(
+    state => ({count:state}),
+    {increment, decrement}  // 解構屬性 傳入組件
+
+)(App)
