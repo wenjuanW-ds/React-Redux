@@ -87,3 +87,18 @@ export default function counter (state= 0, action) {
 
 notice :  返回一個新的狀態
           不要修改原來的狀態
+
+
+React-Redux  將所有組件分爲兩大類
+
+
+UI 組件  1 Z只負責UI的呈現 不帶任何業務邏輯
+        2 通過props接收數據
+        3 不使用 任何Redux API
+        4 一般保存在Component 下
+
+容器組件
+負責管理數據和業務邏輯 不負責UI呈現
+
+使用Redux API
+一般保存在 containers 下
