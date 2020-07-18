@@ -102,3 +102,16 @@ UI 組件  1 Z只負責UI的呈現 不帶任何業務邏輯
 
 使用Redux API
 一般保存在 containers 下
+
+
+
+------------Redux 异步编程-----------------
+
+npm install --save redux-thunk
+
+
+------------Redux 调试工具-------------------
+
+安装chrome 浏览器插件
+
+npm install --save-dev redux-devtools-extension
